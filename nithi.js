@@ -55,7 +55,7 @@ app.post("/sign_up", (req, res) => {
 
 // Route for user login
 app.post("/log",(req,res)=>{
-    return res.redirect('index2.html');
+    return res.redirect('Login_Form.html');
 });
 app.post("/login", (req, res) => {
     var name = req.body.name;
@@ -65,7 +65,7 @@ app.post("/login", (req, res) => {
         .then(user => {
             if(user.name==="admin" && user.password==="123")
             {
-                res.redirect('users.html');
+                res.redirect('userpage.html');
             }
             else if (user) 
             {
@@ -93,7 +93,7 @@ app.get("/users", (req, res) => {
 });
 app.post("/back",(req,res)=>{
 
-    res.redirect('index.html');
+    res.redirect('Registration_Form.html');
 });
 app.listen(5000, () => {
     console.log("Listening on port 5000");
