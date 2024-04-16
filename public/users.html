@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="./users-style.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        table {
+            border-collapse: collapse;
+            margin:30px 100px 0 100px;
+            width: 80%;
+            height: 50vh;
+            border-left: 3px solid  #06304b ;
+            border-right: 3px solid  #06304b ;
+            box-shadow: 5px 5px 10px grey;
+        }
+        th, td {
+            padding: 8px;
+            gap: 30px;
+            text-align: left;
+            border-bottom: 3px solid #06304b;
+        }
+        th {
+            background-color: #06304b;
+            color: white;
+            font-size: 24px;
+        }
+        h2{
+            font-family: "Poppins", sans-serif;
+            text-align: center;
+            font-weight: bold;
+        }
+        #userTableBody{
+            font-size: 24px;
+        }
+        .scroll{
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+    <h2>User Details</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Password</th>
+                </div>
+            </tr>
+        </thead>
+        <div class="scroll">
+        <tbody id="userTableBody">
+            <!-- User details will be dynamically inserted here -->
+        </tbody>
+        </div>
+    </table>
+
+    <script>
+        fetch('/users') // Fetch user details from server
+            .then(response => response.json())
+            .then(users => {
+                const userTableBody = document.getElementById('userTableBody');
+                users.forEach(user => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${user.name}</td>
+                        <td>${user.password}</td>
+                    `;
+                    userTableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching user details:', error);
+            });
+    </script>
+    
+    <form action="/back" method="POST">
+        <div class="login-button">
+        <input type="submit" value="Back" id="submit" /></div>
+    </form>
+     
+</body>
+</html>
