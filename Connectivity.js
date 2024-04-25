@@ -93,8 +93,9 @@ app.get("/users", (req, res) => {
 });
 app.post("/back",(req,res)=>{
 
-    res.redirect('Registration_Form.html');
+    res.redirect('index.html');
 });
+
 app.listen(5000, () => {
     console.log("Listening on port 5000");
 });
